@@ -1,0 +1,9 @@
+<div></div>
+
+<style>
+  div {
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+  }
+</style>
