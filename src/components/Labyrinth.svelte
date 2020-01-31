@@ -10,8 +10,8 @@
     [0, 1, 1, 0, 0],
     [0, 0, 1, 1, 1],
   ];
-  export let rows = grid.length;
-  export let cols = grid[0].length;
+  let rows = grid.length;
+  let cols = grid[0].length;
 </script>
 
 <div
@@ -31,6 +31,8 @@
     display: grid;
     grid-template-rows: repeat(var(--rows), 1fr);
     grid-template-columns: repeat(var(--columns), 1fr);
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
     padding: 8px;
     margin: auto;
   }

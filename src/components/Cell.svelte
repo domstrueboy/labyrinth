@@ -4,7 +4,7 @@
   export let isPath;
 
   let cell;
-  export let width = '100px';
+  let width;
 
   onMount(() => {
     width = cell.offsetWidth + 'px';
@@ -20,8 +20,6 @@
 
 <style>
   div {
-    box-sizing: border-box;
-    border: 1px solid gray;
     height: var(--height);
   }
   .path {
