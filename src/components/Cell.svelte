@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
 
+  export let isPath;
+
   let cell;
   export let width = '100px';
 
@@ -10,8 +12,8 @@
 </script>
 
 <div
+  class="{isPath ? 'path' : ''}"
   bind:this={cell}
-  height={width}
   style="--height:{width}"
 >
 </div>
@@ -21,5 +23,8 @@
     box-sizing: border-box;
     border: 1px solid gray;
     height: var(--height);
+  }
+  .path {
+    background: tomato;
   }
 </style>

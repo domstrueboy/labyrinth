@@ -7,8 +7,8 @@
     [1, 1, 1, 0, 0],
     [1, 0, 0, 0, 0],
     [1, 1, 0, 0, 0],
-    [0, 1, 0, 0, 0],
-    [0, 1, 0, 0, 0],
+    [0, 1, 1, 0, 0],
+    [0, 0, 1, 1, 1],
   ];
   export let rows = grid.length;
   export let cols = grid[0].length;
@@ -19,8 +19,8 @@
   style="--rows:{rows};--columns:{cols}"
 >
   {#each grid as row, r}
-    {#each row as cell, c}
-      <Cell />
+    {#each row as cellCode, c}
+      <Cell isPath={!!cellCode} />
     {/each}
   {/each}
 </div>
