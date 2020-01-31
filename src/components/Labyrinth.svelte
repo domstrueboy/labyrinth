@@ -2,13 +2,13 @@
   import Cell from './Cell.svelte';
 
   let grid = [
-    [0, 0, 0, 1, 0],
+    [0, 0, 0, 1, 3],
     [0, 0, 1, 1, 0],
     [1, 1, 1, 0, 0],
     [1, 0, 0, 0, 0],
     [1, 1, 0, 0, 0],
     [0, 1, 1, 0, 0],
-    [0, 0, 1, 1, 1],
+    [0, 0, 1, 1, 2],
   ];
   let rows = grid.length;
   let cols = grid[0].length;
@@ -20,7 +20,7 @@
 >
   {#each grid as row, r}
     {#each row as cellCode, c}
-      <Cell isPath={!!cellCode} />
+      <Cell {cellCode} />
     {/each}
   {/each}
 </div>
