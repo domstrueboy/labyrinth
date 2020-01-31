@@ -1,5 +1,4 @@
-<div class="wrapper" contenteditable="true">
-  Пиши здесь
+<div class="wrapper" contenteditable="true" autofocus>
 </div>
 
 <style>
@@ -8,5 +7,6 @@
     background: lightgray;
     padding: 8px;
     font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
   }
 </style>
