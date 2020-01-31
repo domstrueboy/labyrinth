@@ -5,7 +5,7 @@
 <style>
   .wrapper {
     flex: 1;
-    background: tomato;
+    background: lightgray;
     padding: 8px;
   }
 </style>
