@@ -30,7 +30,13 @@
   .start {
     background: lightgreen;
   }
+  .start::after {
+    content: 'Start'
+  }
   .finish {
     background: salmon;
+  }
+  .finish::after {
+    content: 'Finish'
   }
 </style>
