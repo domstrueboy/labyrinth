@@ -1,16 +1,18 @@
 <script>
   import { isAppStarted } from '../stores.js';
   import parser from '../functions/parser.js';
+  import lexer from '../functions/lexer.js';
 
   let editor;
   let content;
   
   $: if ($isAppStarted) {
     const parsed = parser(editor.innerHTML);
-    console.log('start the app', parsed);
+    const lexed = lexer(parsed);
+    console.log('start the app', lexed);
   }
 
-  $: console.log('input handling (lint, suggestions, etc)', content);
+  // $: console.log('input handling (lint, suggestions, etc)', content);
 </script>
 
 <div
