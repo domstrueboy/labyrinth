@@ -1,5 +1,6 @@
 <script>
   import Cell from './Cell.svelte';
+  import { commands } from '../stores.js';
 
   let grid = [
     [0, 0, 0, 1, 3],
@@ -12,6 +13,10 @@
   ];
   let rows = grid.length;
   let cols = grid[0].length;
+
+  $: if ($commands.length > 0) {
+    console.log('lab', $commands);
+  }
 </script>
 
 <div
