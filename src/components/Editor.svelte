@@ -1,4 +1,23 @@
-<div class="wrapper" contenteditable="true" autofocus>
+<script>
+  import { isAppStarted } from '../stores.js';
+
+  let editor;
+  let content;
+  
+  $: if ($isAppStarted) {
+    console.log('start the app', editor.innerHTML);
+  }
+
+  $: console.log('input handling (lint, suggestions, etc)', content);
+</script>
+
+<div
+  bind:this={editor}
+  bind:innerHTML={content}
+  contenteditable="true"
+  class="wrapper"
+  autofocus
+>
 </div>
 
 <style>
