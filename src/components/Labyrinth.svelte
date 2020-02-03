@@ -17,11 +17,18 @@
   let indexY = grid.findIndex(row => row.includes(2));
   let indexX = grid[indexY].findIndex(col => col === 2);
 
-  let posX = indexX + 1;
-  let posY = indexY + 1;
+  let posX, posY;
+
+  $: posX = indexX + 1;
+  $: posY = indexY + 1;
 
   $: if ($commands.length > 0) {
-    console.log('lab', $commands);
+    $commands.forEach(command => {
+      switch (command[0]) {
+        case 'left':
+          const newX = indexX - 1;
+      }
+    });
   }
 </script>
 
