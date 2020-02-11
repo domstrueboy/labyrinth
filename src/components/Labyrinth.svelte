@@ -2,6 +2,9 @@
   import Cell from './Cell.svelte';
   import { commands } from '../stores.js';
 
+  import checkIfInField from '../functions/checkIfInField.js';
+  import checkIfWin from '../functions/checkIfWin.js';
+
   let grid = [
     [0, 0, 0, 1, 3],
     [0, 0, 1, 1, 0],
@@ -24,9 +27,52 @@
 
   $: if ($commands.length > 0) {
     $commands.forEach(command => {
+      let newX, newY;
       switch (command[0]) {
         case 'left':
-          const newX = indexX - 1;
+          newX = indexX - command[1];
+          if (checkIfInField(grid, newX, indexY)) {
+            indexX -= command[1];
+            if (checkIfWin(grid, indexX, indexY)) {
+              alert('Победа!');
+            }
+          } else {
+            alert('Вы вышли за пределы поля!');
+          }
+          break;
+        case 'right':
+          newX = indexX + command[1];
+          if (checkIfInField(grid, newX, indexY)) {
+            indexX += command[1];
+            if (checkIfWin(grid, indexX, indexY)) {
+              alert('Победа!');
+            }
+          } else {
+            alert('Вы вышли за пределы поля!');
+          }
+          break;
+        case 'up':
+          newY = indexY - command[1];
+          if (checkIfInField(grid, indexX, newY)) {
+            indexY -= command[1];
+            if (checkIfWin(grid, indexX, indexY)) {
+              alert('Победа!');
+            }
+          } else {
+            alert('Вы вышли за пределы поля!');
+          }
+          break;
+        case 'down':
+          newY = indexY + command[1];
+          if (checkIfInField(grid, indexX, newY)) {
+            indexY += command[1];
+            if (checkIfWin(grid, indexX, indexY)) {
+              alert('Победа!');
+            }
+          } else {
+            alert('Вы вышли за пределы поля!');
+          }
+          break;
       }
     });
   }
