@@ -25,56 +25,67 @@
   $: posX = indexX + 1;
   $: posY = indexY + 1;
 
-  $: if ($commands.length > 0) {
-    $commands.forEach(command => {
-      let newX, newY;
-      switch (command[0]) {
-        case 'left':
-          newX = indexX - command[1];
-          if (checkIfInField(grid, newX, indexY)) {
-            indexX -= command[1];
-            if (checkIfWin(grid, indexX, indexY)) {
-              alert('Победа!');
+  function methodThatReturnsAPromise(command) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let newX, newY;
+        switch (command[0]) {
+          case 'left':
+            newX = indexX - command[1];
+            if (checkIfInField(grid, newX, indexY)) {
+              indexX -= command[1];
+              if (checkIfWin(grid, indexX, indexY)) {
+                alert('Победа!');
+              }
+            } else {
+              alert('Вы вышли за пределы поля!');
             }
-          } else {
-            alert('Вы вышли за пределы поля!');
-          }
-          break;
-        case 'right':
-          newX = indexX + command[1];
-          if (checkIfInField(grid, newX, indexY)) {
-            indexX += command[1];
-            if (checkIfWin(grid, indexX, indexY)) {
-              alert('Победа!');
+            break;
+          case 'right':
+            newX = indexX + command[1];
+            if (checkIfInField(grid, newX, indexY)) {
+              indexX += command[1];
+              if (checkIfWin(grid, indexX, indexY)) {
+                alert('Победа!');
+              }
+            } else {
+              alert('Вы вышли за пределы поля!');
             }
-          } else {
-            alert('Вы вышли за пределы поля!');
-          }
-          break;
-        case 'up':
-          newY = indexY - command[1];
-          if (checkIfInField(grid, indexX, newY)) {
-            indexY -= command[1];
-            if (checkIfWin(grid, indexX, indexY)) {
-              alert('Победа!');
+            break;
+          case 'up':
+            newY = indexY - command[1];
+            if (checkIfInField(grid, indexX, newY)) {
+              indexY -= command[1];
+              if (checkIfWin(grid, indexX, indexY)) {
+                alert('Победа!');
+              }
+            } else {
+              alert('Вы вышли за пределы поля!');
             }
-          } else {
-            alert('Вы вышли за пределы поля!');
-          }
-          break;
-        case 'down':
-          newY = indexY + command[1];
-          if (checkIfInField(grid, indexX, newY)) {
-            indexY += command[1];
-            if (checkIfWin(grid, indexX, indexY)) {
-              alert('Победа!');
+            break;
+          case 'down':
+            newY = indexY + command[1];
+            if (checkIfInField(grid, indexX, newY)) {
+              indexY += command[1];
+              if (checkIfWin(grid, indexX, indexY)) {
+                alert('Победа!');
+              }
+            } else {
+              alert('Вы вышли за пределы поля!');
             }
-          } else {
-            alert('Вы вышли за пределы поля!');
-          }
-          break;
-      }
+            break;
+        }
+        resolve();
+      }, 1000);
     });
+  }
+
+  $: if ($commands.length > 0) {
+    $commands.reduce((accumulatorPromise, command) => {
+      return accumulatorPromise.then(() => {
+        return methodThatReturnsAPromise(command);
+      });
+    }, Promise.resolve());
   }
 </script>
 
