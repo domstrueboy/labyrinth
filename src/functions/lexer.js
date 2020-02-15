@@ -1,6 +1,10 @@
 export default function lexer(arr) {
   return arr.reduce(
     (acc, cur) => {
+      if (cur === 'delimeter') {
+        acc.push(cur);
+        return acc;
+      }
       const line = cur.split(' ').filter(el => el !== '');
       const command = line[0].toLowerCase();
       const times = parseInt(line[1], 10);
@@ -13,6 +17,8 @@ export default function lexer(arr) {
         acc.push(['up', times]);
       } else if (['вниз', 'down'].includes(command)) {
         acc.push(['down', times]);
+      } else if (['повтор', 'повторить', 'repeat'].includes(command)) {
+        acc.push(['repeat', times]);
       }
       return acc;
     },

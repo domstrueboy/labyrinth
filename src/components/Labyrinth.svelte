@@ -29,11 +29,11 @@
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         let newX, newY;
-        switch (command[0]) {
+        switch (command) {
           case 'left':
-            newX = indexX - command[1];
+            newX = indexX - 1;
             if (checkIfInField(grid, newX, indexY)) {
-              indexX -= command[1];
+              indexX -= 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 alert('Победа!');
               }
@@ -42,9 +42,9 @@
             }
             break;
           case 'right':
-            newX = indexX + command[1];
+            newX = indexX + 1;
             if (checkIfInField(grid, newX, indexY)) {
-              indexX += command[1];
+              indexX += 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 alert('Победа!');
               }
@@ -53,9 +53,9 @@
             }
             break;
           case 'up':
-            newY = indexY - command[1];
+            newY = indexY - 1;
             if (checkIfInField(grid, indexX, newY)) {
-              indexY -= command[1];
+              indexY -= 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 alert('Победа!');
               }
@@ -64,9 +64,9 @@
             }
             break;
           case 'down':
-            newY = indexY + command[1];
+            newY = indexY + 1;
             if (checkIfInField(grid, indexX, newY)) {
-              indexY += command[1];
+              indexY += 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 alert('Победа!');
               }
