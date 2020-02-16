@@ -1,7 +1,7 @@
 main.svelte-1r6xykg{height:100vh;width:100vw;display:flex;position:relative}
-button.svelte-1oydbdt{position:absolute;bottom:13px;left:10px;cursor:pointer;margin:0;font-size:32px;font-weight:200;box-shadow:4px 4px 4px gray;border:0;background:white}button.svelte-1oydbdt:active{box-shadow:2px 2px 2px gray;background:white}
-.wrapper.svelte-1pn1d0p{flex:1;background:lightgray;padding:8px;font-size:24px;font-family:'Courier New', Courier, monospace;font-weight:bold;color:grey;outline:none}
 .wrapper.svelte-l6o0f2{flex:1;display:grid;grid-template-rows:repeat(var(--rows), 1fr);grid-template-columns:repeat(var(--columns), 1fr);grid-column-gap:2px;grid-row-gap:2px;padding:8px;margin:auto;position:relative}.chip.svelte-l6o0f2{position:absolute;grid-column-start:var(--pos-x);grid-column-end:var(--pos-x);grid-row-start:var(--pos-y);grid-row-end:var(--pos-y);width:80%;height:80%;background:black;border-radius:50%;margin-left:10%;margin-top:10%}
+.wrapper.svelte-1pn1d0p{flex:1;background:lightgray;padding:8px;font-size:24px;font-family:'Courier New', Courier, monospace;font-weight:bold;color:grey;outline:none}
+button.svelte-1oydbdt{position:absolute;bottom:13px;left:10px;cursor:pointer;margin:0;font-size:32px;font-weight:200;box-shadow:4px 4px 4px gray;border:0;background:white}button.svelte-1oydbdt:active{box-shadow:2px 2px 2px gray;background:white}
 div.svelte-1qgnwu1{height:var(--height)}.path.svelte-1qgnwu1{background:lightpink}.start.svelte-1qgnwu1{background:lightgreen}.start.svelte-1qgnwu1::after{content:'Start'
   }.finish.svelte-1qgnwu1{background:salmon}.finish.svelte-1qgnwu1::after{content:'Finish'
   }
