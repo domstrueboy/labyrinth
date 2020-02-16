@@ -11,7 +11,7 @@ export default function runner(arr) {
       const times = cur[1];
       if (command === 'repeat') {
         const buf = [];
-        
+        const bufIndex = arr[index + 1] ? index + 1 : index;
       }
       for (let i = 0; i < times; i++) {
         newArr.push(command);
