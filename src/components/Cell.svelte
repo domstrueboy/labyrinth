@@ -1,28 +1,23 @@
 <script>
-  import { onMount } from 'svelte';
-
   export let cellCode;
+  export let size;
 
   let cell;
-  let width;
 
   let cellTypeByCode = ['none', 'path', 'start', 'finish'];
-
-  onMount(() => {
-    width = cell.offsetWidth + 'px';
-  });
 </script>
 
 <div
   class="{cellTypeByCode[cellCode]}"
   bind:this={cell}
-  style="--height:{width}"
+  style="--size:{size}"
 >
 </div>
 
 <style>
   div {
-    height: var(--height);
+    width: var(--size);
+    height: var(--size);
   }
   .path {
     background: lightpink;
@@ -30,13 +25,7 @@
   .start {
     background: lightgreen;
   }
-  .start::after {
-    content: 'Start'
-  }
   .finish {
     background: salmon;
-  }
-  .finish::after {
-    content: 'Finish'
   }
 </style>

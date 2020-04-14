@@ -17,6 +17,9 @@
   let rows = grid.length;
   let cols = grid[0].length;
 
+  let w;
+  let h;
+
   let indexY = grid.findIndex(row => row.includes(2));
   let indexX = grid[indexY].findIndex(col => col === 2);
 
@@ -24,6 +27,7 @@
 
   $: posX = indexX + 1;
   $: posY = indexY + 1;
+  $: size = Math.min(w / cols, h / rows) + 'px';
 
   function methodThatReturnsAPromise(command) {
     return new Promise((resolve, reject) => {
@@ -91,29 +95,41 @@
 
 <div
   class="wrapper"
-  style="--rows:{rows};--columns:{cols}"
+  style="--rows:{rows}; --columns:{cols}; --size:{size}"
 >
-  {#each grid as row, y}
-    {#each row as cellCode, x}
-      <Cell {cellCode} />
-    {/each}
-  {/each}
   <div
-    class="chip"
-    style="--pos-x:{posX};--pos-y:{posY}"
+    class="field"
+    bind:clientWidth={w}
+    bind:clientHeight={h}
   >
+    {#each grid as row, y}
+      {#each row as cellCode, x}
+        <Cell {cellCode} size={size} />
+      {/each}
+    {/each}
+    <div
+      class="chip"
+      style="--pos-x:{posX};--pos-y:{posY}"
+    >
+    </div>
   </div>
 </div>
 
 <style>
   .wrapper {
     flex: 1;
+    padding: 8px 8px 22px 8px;
+  }
+  .field {
+    max-width: 50vw;
+    max-height: 100vh;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-rows: repeat(var(--rows), 1fr);
     grid-template-columns: repeat(var(--columns), 1fr);
     grid-column-gap: 2px;
     grid-row-gap: 2px;
-    padding: 8px;
     margin: auto;
     position: relative;
   }
