@@ -121,16 +121,15 @@
     padding: 8px 8px 22px 8px;
   }
   .field {
-    max-width: 50vw;
-    max-height: 100vh;
     width: 100%;
     height: 100%;
+    max-width: 50vw;
+    max-height: 100vh;
     display: grid;
-    grid-template-rows: repeat(var(--rows), 1fr);
-    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), var(--size));
+    grid-template-columns: repeat(var(--columns), var(--size));
     grid-column-gap: 2px;
     grid-row-gap: 2px;
-    margin: auto;
     position: relative;
   }
   .chip {
