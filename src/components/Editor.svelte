@@ -30,9 +30,10 @@
 
 <style>
   .wrapper {
-    flex: 1;
     box-sizing: border-box;
-    max-width: 50vw;
+    width: 50vw;
+    height: 100vh;
+    overflow: auto;
     background: rgb(45, 45, 45);
     padding: 8px;
     font-size: 24px;

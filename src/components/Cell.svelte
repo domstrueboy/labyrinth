@@ -18,14 +18,15 @@
   div {
     width: var(--size);
     height: var(--size);
+    border-radius: 20px;
   }
   .path {
-    background: lightpink;
+    background: plum;
   }
   .start {
-    background: lightgreen;
+    background: peru;
   }
   .finish {
-    background: salmon;
+    background: orangered;
   }
 </style>
