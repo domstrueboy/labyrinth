@@ -118,7 +118,10 @@
 <style>
   .wrapper {
     flex: 1;
+    box-sizing: border-box;
+    max-width: 50vw;
     padding: 8px 8px 22px 8px;
+    background: whitesmoke;
   }
   .field {
     width: 100%;

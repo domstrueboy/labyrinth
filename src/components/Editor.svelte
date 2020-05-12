@@ -31,12 +31,14 @@
 <style>
   .wrapper {
     flex: 1;
-    background: lightgray;
+    box-sizing: border-box;
+    max-width: 50vw;
+    background: rgb(45, 45, 45);
     padding: 8px;
     font-size: 24px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Anonymous Pro', monospace;
     font-weight: bold;
-    color: grey;
+    color: whitesmoke;
     outline: none;
   }
 </style>
