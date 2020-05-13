@@ -1,17 +1,17 @@
 <script>
   import Cell from './Cell.svelte';
-  import { commands } from '../stores.js';
+  import { commands, win } from '../stores.js';
 
   import checkIfInField from '../functions/checkIfInField.js';
   import checkIfWin from '../functions/checkIfWin.js';
 
   let grid = [
     [0, 0, 0, 1, 3],
-    [0, 0, 1, 1, 0],
-    [1, 1, 1, 0, 0],
-    [1, 0, 0, 0, 0],
-    [1, 1, 0, 0, 0],
-    [0, 1, 1, 0, 0],
+    [0, 0, 1, 1, 1],
+    [1, 1, 1, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 1, 0, 0, 1],
+    [0, 1, 1, 0, 1],
     [0, 0, 1, 1, 2],
   ];
   let rows = grid.length;
@@ -39,7 +39,7 @@
             if (checkIfInField(grid, newX, indexY)) {
               indexX -= 1;
               if (checkIfWin(grid, indexX, indexY)) {
-                alert('Победа!');
+                win.set(true);
               }
             } else {
               alert('Вы вышли за пределы поля!');
@@ -50,7 +50,7 @@
             if (checkIfInField(grid, newX, indexY)) {
               indexX += 1;
               if (checkIfWin(grid, indexX, indexY)) {
-                alert('Победа!');
+                win.set(true);
               }
             } else {
               alert('Вы вышли за пределы поля!');
@@ -61,7 +61,7 @@
             if (checkIfInField(grid, indexX, newY)) {
               indexY -= 1;
               if (checkIfWin(grid, indexX, indexY)) {
-                alert('Победа!');
+                win.set(true);
               }
             } else {
               alert('Вы вышли за пределы поля!');
@@ -72,7 +72,7 @@
             if (checkIfInField(grid, indexX, newY)) {
               indexY += 1;
               if (checkIfWin(grid, indexX, indexY)) {
-                alert('Победа!');
+                win.set(true);
               }
             } else {
               alert('Вы вышли за пределы поля!');
