@@ -6,10 +6,14 @@
 
 	import { win, level } from './stores.js';
 
+	console.log(document.title);
+	
 	function handleClick() {
 		level.set($level + 1);
 		win.set(false);
-  }
+	}
+	
+	$: document.title = `${document.title} Уровень ${$level}`;
 </script>
 
 <main>
