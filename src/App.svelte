@@ -13,7 +13,7 @@
 		win.set(false);
 	}
 	
-	$: document.title = `${document.title} Уровень ${$level}`;
+	$: document.title = `Уровень ${$level}`;
 </script>
 
 <main>
