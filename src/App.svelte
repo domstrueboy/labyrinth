@@ -4,7 +4,12 @@
 	import MainButton from './components/MainButton.svelte';
 	import Alert from './components/Alert.svelte';
 
-	import { win } from './stores.js';
+	import { win, level } from './stores.js';
+
+	function handleClick() {
+		level.set($level + 1);
+		win.set(false);
+  }
 </script>
 
 <main>
@@ -15,7 +20,7 @@
 	{#if $win}
 		<Alert>
 			<span>Победа!</span>
-			<button>OK</button>
+			<button on:click={handleClick}>Next</button>
 		</Alert>
 	{/if}
 </main>

@@ -8,34 +8,36 @@
   import { onMount } from 'svelte';
 
   let grid = [
-    [3, 1],
-    [1, 2],
+    [2, 1],
+    [1, 3],
   ];
 
   let rows = grid.length;
   let cols = grid[0].length;
 
-  let w;
-  let h;
+  let w, h;
 
-  let indexY = grid.findIndex(row => row.includes(2));
-  let indexX = grid[indexY].findIndex(col => col === 2);
+  let indexY = 0;
+  let indexX = 0;
 
   let posX, posY;
 
-  onMount(async () => {
-    grid = (await import(`../levels/level${$level}.js`)).default;
+  onMount(() => loadLevel($level));
+
+  $: posX = indexX + 1;
+  $: posY = indexY + 1;
+  $: size = Math.min(w / cols, h / rows) - 4 + 'px';
+  $: loadLevel($level);
+
+  async function loadLevel(level) {
+    grid = (await import(`../levels/level${level}.js`)).default;
 
     rows = grid.length;
     cols = grid[0].length;
 
     indexY = grid.findIndex(row => row.includes(2));
     indexX = grid[indexY].findIndex(col => col === 2);
-  });
-
-  $: posX = indexX + 1;
-  $: posY = indexY + 1;
-  $: size = Math.min(w / cols, h / rows) - 4 + 'px';
+  }
 
   function methodThatReturnsAPromise(command) {
     return new Promise((resolve, reject) => {
