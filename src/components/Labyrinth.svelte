@@ -1,19 +1,17 @@
 <script>
   import Cell from './Cell.svelte';
-  import { commands, win } from '../stores.js';
+  import { commands, win, level } from '../stores.js';
 
   import checkIfInField from '../functions/checkIfInField.js';
   import checkIfWin from '../functions/checkIfWin.js';
 
+  import { onMount } from 'svelte';
+
   let grid = [
-    [0, 0, 0, 1, 3],
-    [0, 0, 1, 1, 1],
-    [1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 1],
-    [1, 1, 0, 0, 1],
-    [0, 1, 1, 0, 1],
-    [0, 0, 1, 1, 2],
+    [3, 1],
+    [1, 2],
   ];
+
   let rows = grid.length;
   let cols = grid[0].length;
 
@@ -24,6 +22,16 @@
   let indexX = grid[indexY].findIndex(col => col === 2);
 
   let posX, posY;
+
+  onMount(async () => {
+    grid = (await import(`../levels/level${$level}.js`)).default;
+
+    rows = grid.length;
+    cols = grid[0].length;
+
+    indexY = grid.findIndex(row => row.includes(2));
+    indexX = grid[indexY].findIndex(col => col === 2);
+  });
 
   $: posX = indexX + 1;
   $: posY = indexY + 1;

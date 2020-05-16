@@ -14,6 +14,7 @@ export default {
 		name: 'app',
 		file: 'public/build/bundle.js'
 	},
+	inlineDynamicImports: true,
 	plugins: [
 		svelte({
 			// enable run-time checks when not in production
