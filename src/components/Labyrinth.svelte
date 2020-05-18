@@ -27,17 +27,13 @@
   $: posX = indexX + 1;
   $: posY = indexY + 1;
   $: size = Math.min(w / cols, h / rows) - 4 + 'px';
-  $: loadLevel($level);
+  $: loadLevel($level).catch((err) => {
+    level.set(1);
+    loadLevel($level);
+  });
 
   async function loadLevel(level) {
-    try {
-      grid = (await import(`../levels/level${level}.js`)).default;
-    } catch(err) {
-      console.log('catch');
-      level.set(1);
-      grid = (await import('../levels/level1.js')).default;
-      
-    }
+    grid = (await import(`../levels/level${level}.js`)).default;
 
     rows = grid.length;
     cols = grid[0].length;
