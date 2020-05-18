@@ -6,7 +6,9 @@
   }
 </script>
 
-<button on:click={handleClick}>СТАРТ</button>
+<button on:click={handleClick} title="START">
+  <img src="img/icons/play_arrow-24px.svg" alt="START">
+</button>
 
 <style>
   button {

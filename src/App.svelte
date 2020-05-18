@@ -5,8 +5,6 @@
 	import Alert from './components/Alert.svelte';
 
 	import { win, level } from './stores.js';
-
-	console.log(document.title);
 	
 	function handleClick() {
 		level.set($level + 1);
@@ -21,12 +19,17 @@
 	<Labyrinth />
 	<MainButton />
 
-	{#if $win}
+	<!-- {#if $win} -->
 		<Alert>
-			<span>Победа!</span>
-			<button on:click={handleClick}>Next</button>
+			<h1>Победа!</h1>
+			<button on:click={handleClick} title="Retry">
+				<img src="img/icons/refresh-24px.svg" alt="">
+			</button>
+			<button on:click={handleClick} title="Next">
+				<img src="img/icons/redo-24px.svg" alt="">
+			</button>
 		</Alert>
-	{/if}
+	<!-- {/if} -->
 </main>
 
 <style>

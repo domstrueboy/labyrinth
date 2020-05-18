@@ -30,7 +30,14 @@
   $: loadLevel($level);
 
   async function loadLevel(level) {
-    grid = (await import(`../levels/level${level}.js`)).default;
+    try {
+      grid = (await import(`../levels/level${level}.js`)).default;
+    } catch(err) {
+      console.log('catch');
+      level.set(1);
+      grid = (await import('../levels/level1.js')).default;
+      
+    }
 
     rows = grid.length;
     cols = grid[0].length;
