@@ -10,13 +10,9 @@
   $: if ($isAppStarted) {
     const parsed = parser(editor.innerHTML);
     const lexed = lexer(parsed);
-    console.log(lexed);
     const separateCommands = runner(lexed);
-    console.log(separateCommands);
     commands.set(separateCommands);
   }
-
-  // $: console.log('input handling (lint, suggestions, etc)', content);
 </script>
 
 <div

@@ -2,6 +2,7 @@
   export let title;
   export let icon;
   export let handler;
+  export let disabled = false;
 </script>
 
 <style>
@@ -20,6 +21,9 @@
     box-shadow: 2px 2px 2px rgba(1, 1, 1, .3);
     background: whitesmoke;
   }
+  button:disabled {
+    opacity: .3;
+  }
   img {
     display: block;
     width: 60px;
@@ -27,6 +31,6 @@
   }
 </style>
 
-<button {title} on:click={handler}>
+<button {title} on:click={handler} {disabled}>
   <img src={icon} alt="" />
 </button>
