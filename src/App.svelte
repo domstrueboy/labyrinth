@@ -1,11 +1,15 @@
 <script>
 	import Editor from './components/Editor.svelte';
 	import Labyrinth from './components/Labyrinth.svelte';
-	import MainButton from './components/MainButton.svelte';
+	import Button from './components/Button.svelte';
 	import Alert from './components/Alert.svelte';
 	import WinWindow from './components/WinWindow.svelte';
 
-	import { win, level } from './stores.js';
+	import { isAppStarted, win, level } from './stores.js';
+
+	function startHandler() {
+    isAppStarted.set(true);
+  }
 	
 	function nextHandler() {
 		level.set($level + 1);
@@ -22,13 +26,15 @@
 <main>
 	<Editor />
 	<Labyrinth />
-	<MainButton />
+	<div class="start-button">
+		<Button title="Старт" icon="img/icons/play_arrow-24px.svg" handler={startHandler} />
+	</div>
 
-	<!-- {#if $win} -->
+	{#if $win}
 		<Alert>
 			<WinWindow {nextHandler} {retryHandler} />
 		</Alert>
-	<!-- {/if} -->
+	{/if}
 </main>
 
 <style>
@@ -37,5 +43,10 @@
 		width: 100vw;
 		display: flex;
 		position: relative;
+	}
+	.start-button {
+		position: absolute;
+    bottom: 13px;
+    left: 10px;
 	}
 </style>
