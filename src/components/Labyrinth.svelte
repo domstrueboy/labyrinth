@@ -1,6 +1,6 @@
 <script>
   import Cell from './Cell.svelte';
-  import { isAppStarted, commands, win, level } from '../stores.js';
+  import { isAppStarted, content, commands, win, level } from '../stores.js';
 
   import checkIfInField from '../functions/checkIfInField.js';
   import checkIfWin from '../functions/checkIfWin.js';
@@ -38,7 +38,9 @@
   async function loadLevel(level) {
     grid = (await import(`../levels/level${level}.js`)).default;
 
+    // reset everything in the store
     isAppStarted.set(false);
+    content.set('');
     commands.set([]);
     win.set(false);
 

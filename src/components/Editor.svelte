@@ -1,14 +1,14 @@
 <script>
-  import { isAppStarted, commands } from '../stores.js';
+  import { isAppStarted, content, commands } from '../stores.js';
   import parser from '../functions/parser.js';
   import lexer from '../functions/lexer.js';
   import runner from '../functions/runner.js';
 
   let editor;
-  let content;
   
   $: if ($isAppStarted) {
-    const parsed = parser(editor.innerHTML);
+    // content.set(editor.innerHTML)
+    const parsed = parser($content);
     const lexed = lexer(parsed);
     const separateCommands = runner(lexed);
     commands.set(separateCommands);
@@ -17,10 +17,9 @@
 
 <div
   bind:this={editor}
-  bind:innerHTML={content}
+  bind:innerHTML={$content}
   contenteditable="true"
   class="wrapper"
-  autofocus
 >
 </div>
 
