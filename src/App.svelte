@@ -3,11 +3,16 @@
 	import Labyrinth from './components/Labyrinth.svelte';
 	import MainButton from './components/MainButton.svelte';
 	import Alert from './components/Alert.svelte';
+	import WinWindow from './components/WinWindow.svelte';
 
 	import { win, level } from './stores.js';
 	
-	function handleClick() {
+	function nextHandler() {
 		level.set($level + 1);
+		win.set(false);
+	}
+
+	function retryHandler() {
 		win.set(false);
 	}
 	
@@ -21,13 +26,7 @@
 
 	<!-- {#if $win} -->
 		<Alert>
-			<h1>Победа!</h1>
-			<button on:click={handleClick} title="Retry">
-				<img src="img/icons/refresh-24px.svg" alt="">
-			</button>
-			<button on:click={handleClick} title="Next">
-				<img src="img/icons/redo-24px.svg" alt="">
-			</button>
+			<WinWindow {nextHandler} {retryHandler} />
 		</Alert>
 	<!-- {/if} -->
 </main>

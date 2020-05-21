@@ -30,8 +30,9 @@
   padding: 20px;
   border-radius: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+  box-shadow: 4px 4px 4px rgba(1, 1, 1, .3);
 }
 </style>
