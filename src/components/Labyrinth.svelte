@@ -1,6 +1,6 @@
 <script>
   import Cell from './Cell.svelte';
-  import { commands, win, level } from '../stores.js';
+  import { isAppStarted, commands, win, level } from '../stores.js';
 
   import checkIfInField from '../functions/checkIfInField.js';
   import checkIfWin from '../functions/checkIfWin.js';
@@ -27,13 +27,20 @@
   $: posX = indexX + 1;
   $: posY = indexY + 1;
   $: size = Math.min(w / cols, h / rows) - 4 + 'px';
-  $: loadLevel($level).catch((err) => {
-    level.set(1);
-    loadLevel($level);
-  });
+  $: if ($win === false) {
+    loadLevel($level)
+      .catch((err) => {
+        level.set(1);
+        loadLevel($level);
+      });
+  }
 
   async function loadLevel(level) {
     grid = (await import(`../levels/level${level}.js`)).default;
+
+    isAppStarted.set(false);
+    commands.set([]);
+    win.set(false);
 
     rows = grid.length;
     cols = grid[0].length;
