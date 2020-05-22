@@ -8,8 +8,11 @@
   
   $: if ($isAppStarted) {
     const parsed = parser($content);
+    console.log(parsed);
     const lexed = lexer(parsed);
+    console.log(lexed);
     const separateCommands = runner(lexed);
+    console.log(separateCommands);
     commands.set(separateCommands);
   }
 </script>
