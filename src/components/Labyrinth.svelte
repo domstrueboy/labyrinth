@@ -1,6 +1,6 @@
 <script>
   import Cell from './Cell.svelte';
-  import { isAppStarted, content, commands, win, level } from '../stores.js';
+  import { isAppStarted, content, commands, win, level, result } from '../stores.js';
 
   import checkIfInField from '../functions/checkIfInField.js';
   import checkIfWin from '../functions/checkIfWin.js';
@@ -27,7 +27,7 @@
   $: posX = indexX + 1;
   $: posY = indexY + 1;
   $: size = Math.min(w / cols, h / rows) - 4 + 'px';
-  $: if ($win === false) {
+  $: if ($result === null) {
     loadLevel($level)
       .catch((err) => {
         level.set(1);
@@ -43,6 +43,7 @@
     content.set('');
     commands.set([]);
     win.set(false);
+    result.set(null);
 
     rows = grid.length;
     cols = grid[0].length;
@@ -62,9 +63,11 @@
               indexX -= 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 win.set(true);
+                result.set('win');
               }
             } else {
-              alert('Вы вышли за пределы поля!');
+              isAppStarted.set(false);
+              result.set('lose');
             }
             break;
           case 'right':
@@ -73,9 +76,10 @@
               indexX += 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 win.set(true);
+                result.set('win');
               }
             } else {
-              alert('Вы вышли за пределы поля!');
+              result.set('lose');
             }
             break;
           case 'up':
@@ -84,9 +88,10 @@
               indexY -= 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 win.set(true);
+                result.set('win');
               }
             } else {
-              alert('Вы вышли за пределы поля!');
+              result.set('lose');
             }
             break;
           case 'down':
@@ -95,9 +100,10 @@
               indexY += 1;
               if (checkIfWin(grid, indexX, indexY)) {
                 win.set(true);
+                result.set('win');
               }
             } else {
-              alert('Вы вышли за пределы поля!');
+              result.set('lose');
             }
             break;
         }

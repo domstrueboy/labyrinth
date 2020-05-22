@@ -7,7 +7,6 @@
   let editor;
   
   $: if ($isAppStarted) {
-    // content.set(editor.innerHTML)
     const parsed = parser($content);
     const lexed = lexer(parsed);
     const separateCommands = runner(lexed);
@@ -20,6 +19,7 @@
   bind:innerHTML={$content}
   contenteditable="true"
   class="wrapper"
+  autofocus
 >
 </div>
 
