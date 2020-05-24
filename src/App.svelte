@@ -6,21 +6,19 @@
 	import WinWindow from './components/WinWindow.svelte';
 	import LoseWindow from './components/LoseWindow.svelte';
 
-	import { isAppStarted, win, level, result } from './stores.js';
+	import { level, status } from './stores.js';
 
 	function startHandler() {
-    isAppStarted.set(true);
+    status.set('started');
   }
 	
 	function nextHandler() {
 		level.set($level + 1);
-		win.set(false);
-		result.set(null);
+		status.set(null);
 	}
 
 	function retryHandler() {
-		win.set(false);
-		result.set(null);
+		status.set(null);
 	}
 	
 	$: document.title = `Уровень ${$level}`;
@@ -30,14 +28,14 @@
 	<Editor />
 	<Labyrinth />
 	<div class="start-button">
-		<Button title="Старт" icon="/img/icons/play_arrow-24px.svg" handler={startHandler} disabled={$isAppStarted} />
+		<Button title="Старт" icon="/img/icons/play_arrow-24px.svg" handler={startHandler} disabled={$status === 'started'} />
 	</div>
 
-	{#if $result === 'win'}
+	{#if $status === 'win'}
 		<Alert>
 			<WinWindow {nextHandler} {retryHandler} />
 		</Alert>
-	{:else if $result === 'lose'}
+	{:else if $status === 'lose'}
 		<Alert>
 			<LoseWindow {retryHandler} />
 		</Alert>

@@ -1,12 +1,12 @@
 <script>
-  import { isAppStarted, content, commands } from '../stores.js';
+  import { content, commands, status } from '../stores.js';
   import parser from '../functions/parser.js';
   import lexer from '../functions/lexer.js';
   import runner from '../functions/runner.js';
 
   let editor;
   
-  $: if ($isAppStarted) {
+  $: if ($status === 'started') {
     const parsed = parser($content);
     console.log(parsed);
     const lexed = lexer(parsed);

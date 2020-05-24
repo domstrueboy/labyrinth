@@ -4,14 +4,18 @@ import runner from './runner.js';
 Deno.test('Runner', () => {
 
   const input = [
-    ['repeat', 5],
+    ['repeat', 3],
     ['up', 1],
+    ['right', 2],
     'delimeter',
-    ['up', 1],
+    ['left', 1],
+    'delimeter',
+    ['repeat', 2],
+    ['down', 2],
     'delimeter',
   ];
   
-  const output = ['up', 'up', 'up', 'up', 'up', 'up'];
+  const output = ['up', 'right', 'right', 'up', 'right', 'right', 'up', 'right', 'right', 'left', 'down', 'down', 'down', 'down'];
   
   const result = runner(input);
 

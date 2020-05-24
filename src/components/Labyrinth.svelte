@@ -1,16 +1,13 @@
 <script>
-  import Cell from './Cell.svelte';
-  import { isAppStarted, content, commands, win, level, result } from '../stores.js';
+  import Cell from "./Cell.svelte";
+  import { content, commands, level, status } from "../stores.js";
 
-  import checkIfInField from '../functions/checkIfInField.js';
-  import checkIfWin from '../functions/checkIfWin.js';
+  import checkIfInField from "../functions/checkIfInField.js";
+  import checkIfWin from "../functions/checkIfWin.js";
 
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
 
-  let grid = [
-    [2, 1],
-    [1, 3],
-  ];
+  let grid = [[2, 1], [1, 3]];
 
   let rows = grid.length;
   let cols = grid[0].length;
@@ -26,24 +23,21 @@
 
   $: posX = indexX + 1;
   $: posY = indexY + 1;
-  $: size = Math.min(w / cols, h / rows) - 4 + 'px';
-  $: if ($result === null) {
-    loadLevel($level)
-      .catch((err) => {
-        level.set(1);
-        loadLevel($level);
-      });
+  $: size = Math.min(w / cols, h / rows) - 4 + "px";
+  $: if ($status === null) {
+    loadLevel($level).catch(err => {
+      level.set(1);
+      loadLevel($level);
+    });
   }
 
   async function loadLevel(level) {
     grid = (await import(`../levels/level${level}.js`)).default;
 
     // reset everything in the store
-    isAppStarted.set(false);
-    content.set('');
+    content.set("");
     commands.set([]);
-    win.set(false);
-    result.set(null);
+    status.set(null);
 
     rows = grid.length;
     cols = grid[0].length;
@@ -52,96 +46,40 @@
     indexX = grid[indexY].findIndex(col => col === 2);
   }
 
-  function methodThatReturnsAPromise(command) {
+  function methodThatReturnsAPromise(command, i) {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        let newX, newY;
-        switch (command) {
-          case 'left':
-            newX = indexX - 1;
-            if (checkIfInField(grid, newX, indexY)) {
-              indexX -= 1;
-              if (checkIfWin(grid, indexX, indexY)) {
-                win.set(true);
-                result.set('win');
-              }
-            } else {
-              isAppStarted.set(false);
-              result.set('lose');
-            }
-            break;
-          case 'right':
-            newX = indexX + 1;
-            if (checkIfInField(grid, newX, indexY)) {
-              indexX += 1;
-              if (checkIfWin(grid, indexX, indexY)) {
-                win.set(true);
-                result.set('win');
-              }
-            } else {
-              result.set('lose');
-            }
-            break;
-          case 'up':
-            newY = indexY - 1;
-            if (checkIfInField(grid, indexX, newY)) {
-              indexY -= 1;
-              if (checkIfWin(grid, indexX, indexY)) {
-                win.set(true);
-                result.set('win');
-              }
-            } else {
-              result.set('lose');
-            }
-            break;
-          case 'down':
-            newY = indexY + 1;
-            if (checkIfInField(grid, indexX, newY)) {
-              indexY += 1;
-              if (checkIfWin(grid, indexX, indexY)) {
-                win.set(true);
-                result.set('win');
-              }
-            } else {
-              result.set('lose');
-            }
-            break;
+      switch (command) {
+        case 'left':
+          indexX--; break;
+        case 'right':
+          indexX++; break;
+        case 'up':
+          indexY--; break;
+        case 'down':
+          indexY++; break;
+      }
+      if (checkIfInField(grid, indexX, indexY)) {
+        if (checkIfWin(grid, indexX, indexY)) {
+          status.set('win');
         }
+      } else {
+        status.set('lose');
+      }
+      setTimeout(() => {
         resolve();
       }, 500);
     });
   }
 
   $: if ($commands.length > 0) {
-    $commands.reduce((accumulatorPromise, command) => {
+    status.set('started');
+    $commands.reduce((accumulatorPromise, command, index) => {
       return accumulatorPromise.then(() => {
         return methodThatReturnsAPromise(command);
       });
     }, Promise.resolve());
   }
 </script>
-
-<div
-  class="wrapper"
-  style="--rows:{rows}; --columns:{cols}; --size:{size}"
->
-  <div
-    class="field"
-    bind:clientWidth={w}
-    bind:clientHeight={h}
-  >
-    {#each grid as row, y}
-      {#each row as cellCode, x}
-        <Cell {cellCode} size={size} />
-      {/each}
-    {/each}
-    <div
-      class="chip"
-      style="--pos-x:{posX};--pos-y:{posY}"
-    >
-    </div>
-  </div>
-</div>
 
 <style>
   .wrapper {
@@ -180,3 +118,14 @@
     margin-top: 10%;
   }
 </style>
+
+<div class="wrapper" style="--rows:{rows}; --columns:{cols}; --size:{size}">
+  <div class="field" bind:clientWidth={w} bind:clientHeight={h}>
+    {#each grid as row, y}
+      {#each row as cellCode, x}
+        <Cell {cellCode} {size} />
+      {/each}
+    {/each}
+    <div class="chip" style="--pos-x:{posX};--pos-y:{posY}" />
+  </div>
+</div>

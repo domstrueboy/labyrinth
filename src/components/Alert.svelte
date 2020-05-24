@@ -1,12 +1,3 @@
-<script>
-  // import { isAppStarted } from '../stores.js';
-
-  // function handleClick() {
-  //   isAppStarted.set(true);
-  // }
-</script>
-
-<!-- <button on:click={handleClick}>СТАРТ</button> -->
 <div class="overlay">
   <div class="window">
     <slot></slot>

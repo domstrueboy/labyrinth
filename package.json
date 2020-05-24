@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "rollup -c -w",
     "start": "sirv public",
+    "test": "deno test ./src/functions/runner.test.ts",
     "build": "rollup -c",
     "deploy": "gh-pages -d public"
   },
