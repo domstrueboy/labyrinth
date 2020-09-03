@@ -8,11 +8,11 @@
   
   $: if ($status === 'started') {
     const parsed = parser($content);
-    console.log(parsed);
+    // console.log(parsed);
     const lexed = lexer(parsed);
-    console.log(lexed);
+    // console.log(lexed);
     const separateCommands = runner(lexed);
-    console.log(separateCommands);
+    // console.log(separateCommands);
     commands.set(separateCommands);
   }
 </script>

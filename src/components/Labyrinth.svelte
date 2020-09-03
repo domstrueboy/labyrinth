@@ -48,6 +48,7 @@
 
   function methodThatReturnsAPromise(command, i) {
     return new Promise((resolve, reject) => {
+      if ($status === 'win' || $status === 'lose') resolve();
       switch (command) {
         case 'left':
           indexX--; break;
@@ -74,9 +75,7 @@
   $: if ($commands.length > 0) {
     status.set('started');
     $commands.reduce((accumulatorPromise, command, index) => {
-      return accumulatorPromise.then(() => {
-        return methodThatReturnsAPromise(command);
-      });
+      return accumulatorPromise.then(() => methodThatReturnsAPromise(command));
     }, Promise.resolve());
   }
 </script>
