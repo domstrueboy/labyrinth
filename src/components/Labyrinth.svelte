@@ -47,8 +47,11 @@
   }
 
   function methodThatReturnsAPromise(command, i) {
-    return new Promise((resolve, reject) => {
-      if ($status === 'win' || $status === 'lose') resolve();
+    return new Promise((resolve) => {
+      if ($status === 'win' || $status === 'lose') {
+        resolve();
+        return;
+      }
       switch (command) {
         case 'left':
           indexX--; break;
@@ -59,14 +62,14 @@
         case 'down':
           indexY++; break;
       }
-      if (checkIfInField(grid, indexX, indexY)) {
-        if (checkIfWin(grid, indexX, indexY)) {
-          status.set('win');
-        }
-      } else {
-        status.set('lose');
-      }
       setTimeout(() => {
+        if (checkIfInField(grid, indexX, indexY)) {
+          if (checkIfWin(grid, indexX, indexY)) {
+            status.set('win');
+          }
+        } else {
+          status.set('lose');
+        }
         resolve();
       }, 500);
     });
@@ -75,7 +78,7 @@
   $: if ($commands.length > 0) {
     status.set('started');
     $commands.reduce((accumulatorPromise, command, index) => {
-      return accumulatorPromise.then(() => methodThatReturnsAPromise(command));
+      return accumulatorPromise.then(() => methodThatReturnsAPromise(command, index));
     }, Promise.resolve());
   }
 </script>
