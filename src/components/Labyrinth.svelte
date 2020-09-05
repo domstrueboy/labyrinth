@@ -46,7 +46,7 @@
     indexX = grid[indexY].findIndex(col => col === 2);
   }
 
-  function methodThatReturnsAPromise(command, i) {
+  function methodThatReturnsAPromise(command, isLastStep) {
     return new Promise((resolve) => {
       if ($status === 'win' || $status === 'lose') {
         resolve();
@@ -66,6 +66,8 @@
         if (checkIfInField(grid, indexX, indexY)) {
           if (checkIfWin(grid, indexX, indexY)) {
             status.set('win');
+          } else if (isLastStep) {
+            status.set('lose');
           }
         } else {
           status.set('lose');
@@ -76,10 +78,14 @@
   }
 
   $: if ($commands.length > 0) {
-    status.set('started');
     $commands.reduce((accumulatorPromise, command, index) => {
-      return accumulatorPromise.then(() => methodThatReturnsAPromise(command, index));
+      return accumulatorPromise.then(() => methodThatReturnsAPromise(
+        command,
+        index === $commands.length - 1
+      ));
     }, Promise.resolve());
+  } else {
+    status.set(null);
   }
 </script>
 

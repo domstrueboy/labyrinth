@@ -28,7 +28,12 @@
 	<Editor />
 	<Labyrinth />
 	<div class="start-button">
-		<Button title="Старт" icon="/img/icons/play_arrow-24px.svg" handler={startHandler} disabled={$status === 'started'} />
+		<Button
+			title="Старт"
+			icon="/img/icons/play_arrow-24px.svg"
+			handler={startHandler}
+			disabled={$status === 'started'}
+		/>
 	</div>
 
 	{#if $status === 'win'}

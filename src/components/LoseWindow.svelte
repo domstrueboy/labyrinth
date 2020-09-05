@@ -12,5 +12,5 @@
 </style>
 
 
-<h1>Ты свалилась с дорожки!</h1>
+<h1>Ты проиграла!</h1>
 <Button title="Заново" icon="img/icons/refresh-24px.svg" handler={retryHandler} />
