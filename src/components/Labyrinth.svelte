@@ -139,7 +139,7 @@
       {/each}
     {/each}
     <div class="chip" style="--pos-x:{posX};--pos-y:{posY}">
-      <img class="chip__img" src="/img/bug.svg" alt="" />
+      <img class="chip__img" src="img/bug.svg" alt="" />
     </div>
   </div>
 </div>
