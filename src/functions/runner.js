@@ -1,8 +1,8 @@
 const MAX_COMMANDS_LEN = 1000;
-const newArr = [];
+let newArr = [];
 
-export default function runner(arr) {
-  console.log('arr', arr);
+export default function runner(arr, startFlag) {
+  if (startFlag === 'start') newArr = [];
   const len = arr.length;
   
   let index = 0;

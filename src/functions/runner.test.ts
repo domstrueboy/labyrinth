@@ -4,6 +4,7 @@ import runner from './runner.js';
 Deno.test('Runner', () => {
 
   const input = [
+    ['left', 2],
     ['repeat', 3],
     ['up', 1],
     ['right', 2],
@@ -14,9 +15,9 @@ Deno.test('Runner', () => {
     ['down', 2],
   ];
   
-  const output = ['up', 'right', 'right', 'up', 'right', 'right', 'up', 'right', 'right', 'left', 'down', 'down', 'down', 'down'];
+  const output = ['left', 'left', 'up', 'right', 'right', 'up', 'right', 'right', 'up', 'right', 'right', 'left', 'down', 'down', 'down', 'down'];
   
-  const result = runner(input);
+  const result = runner(input, 'start');
 
   assertEquals(result, output);
 });
