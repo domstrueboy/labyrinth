@@ -1,6 +1,6 @@
 <script>
   import Cell from "./Cell.svelte";
-  import { content, commands, level, status } from "../stores.js";
+  import { commands, level, status } from "../stores.js";
 
   import checkIfInField from "../functions/checkIfInField.js";
   import checkIfWin from "../functions/checkIfWin.js";
@@ -35,7 +35,6 @@
     grid = (await import(`../levels/level${level}.js`)).default;
 
     // reset everything in the store
-    content.set("");
     commands.set([]);
     status.set(null);
 

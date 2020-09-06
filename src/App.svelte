@@ -6,7 +6,7 @@
 	import WinWindow from './components/WinWindow.svelte';
 	import LoseWindow from './components/LoseWindow.svelte';
 
-	import { level, status } from './stores.js';
+	import { content, level, status } from './stores.js';
 
 	function startHandler() {
     status.set('started');
@@ -15,6 +15,7 @@
 	function nextHandler() {
 		level.set($level + 1);
 		status.set(null);
+		content.set("");
 	}
 
 	function retryHandler() {
