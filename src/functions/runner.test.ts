@@ -12,7 +12,6 @@ Deno.test('Runner', () => {
     'delimeter',
     ['repeat', 2],
     ['down', 2],
-    'delimeter',
   ];
   
   const output = ['up', 'right', 'right', 'up', 'right', 'right', 'up', 'right', 'right', 'left', 'down', 'down', 'down', 'down'];
