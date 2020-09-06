@@ -120,10 +120,14 @@
     grid-row-end: var(--pos-y);
     width: 80%;
     height: 80%;
-    background: rgb(45, 45, 45);
-    border-radius: 50%;
+    /* background: rgb(45, 45, 45);
+    border-radius: 50%; */
     margin-left: 10%;
     margin-top: 10%;
+  }
+
+  .chip__img {
+    width: 100%;
   }
 </style>
 
@@ -134,6 +138,8 @@
         <Cell {cellCode} {size} />
       {/each}
     {/each}
-    <div class="chip" style="--pos-x:{posX};--pos-y:{posY}" />
+    <div class="chip" style="--pos-x:{posX};--pos-y:{posY}">
+      <img class="chip__img" src="/img/bug.svg" alt="" />
+    </div>
   </div>
 </div>
