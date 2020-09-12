@@ -1,3 +1,9 @@
+Hey!
+
+My name is Pavel, I am from Russia, my city's name is (I guess it's hard to pronounce for you) Chelyabinsk, I have children, and my daughter likes, you know, phone games with robots, that you should direct the robot through a labyrinth with your commands. Such games should to teach a child how to program. Usually these commands you set by buttons with arrows or something like that because the games are for little children, who can't write (or type) the code for now. My daughter can write though, she is already 8. And she tries and likes typing on the laptop keyboard. So, why don't I to mix these activities she likes? As a final project for CS50 I chose the game "Labyrinth" where you have several simple commands (much simpler than real programming language) but you should really write "the code".
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
 *Psst — looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---

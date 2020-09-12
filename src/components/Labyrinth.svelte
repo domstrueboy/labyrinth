@@ -34,7 +34,6 @@
   async function loadLevel(level) {
     grid = (await import(`../levels/level${level}.js`)).default;
 
-    // reset everything in the store
     commands.set([]);
     status.set(null);
 
