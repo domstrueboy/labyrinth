@@ -1,34 +1,16 @@
 Hey!
 
-My name is Pavel, I am from Russia, my city's name is (I guess it's hard to pronounce for you) Chelyabinsk, I have children, and my daughter likes, you know, phone games with robots, that you should direct the robot through a labyrinth with your commands. Such games should teach a child how to program. Usually, you apply these commands by buttons with arrows or something like that because the games are for little children, who can't write (or type) the code for now. My daughter can write though, she is already 8. And she tries and likes typing on the laptop keyboard. So, why don't I try to mix these activities she likes? As a final project for CS50 I chose the game "Labyrinth" where you have several simple commands (much simpler than real programming language) but you should really write "the code".
+My name is Pavel, I am from Russia, my city's name is Chelyabinsk (I guess it's hard to pronounce for you), I have children, and my daughter likes, you know, phone games with robots, that you should direct the robot through a labyrinth with your commands. Such games should teach a kid how to program. Usually, you apply these commands by buttons with arrows or something like that because the games are for little children, who can't write (or type) the code yet. My daughter can write though, she is already 8. And she tries and likes typing on the laptop keyboard. So, why don't I try to mix these activities she likes? As a final project for CS50 I chose the game "Labyrinth" where you have several simple commands, much simpler than a real programming language, but you should really write "the code".
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-*Psst — looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
-
----
-
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
+## Getting started for a developer
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
 
 Install the dependencies...
 
 ```bash
-cd svelte-app
-npm install
+npm i
 ```
 
 ...then start [Rollup](https://rollupjs.org):
@@ -37,63 +19,8 @@ npm install
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
+Navigate to [localhost:5000/dev](http://localhost:5000/dev). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
 ## Building and running in production mode
 
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-
-## Deploying to the web
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-now deploy --name my-project
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+For my repository I also set auto-building the app when you push a commit into master branch on github. It uses GutHub Actions for building (look at .github/workflows directory). The built app is available on [https://domstrueboy.github.io/labyrinth/](https://domstrueboy.github.io/labyrinth/).
