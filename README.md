@@ -34,11 +34,12 @@ That's it. Let's try!
 
 ## Possible improvements:
 
+- scores and charts
+- syntax highlighting
+- running command highlighting
 - more maps
 - maps editor
 - actual server with login ability
-- scores and charts
-- syntax highlighting
 - ability to choose a character instead of the Bug
 - color themes
 - more cell types - stones, pits, etc
